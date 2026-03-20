@@ -24,7 +24,6 @@ public class GameEngine {
 	private static final int REMOVE_HIDDEN = 10;
 	private static final int FIRST_AID_KIT_BONUS = 10;
 
-
 	public GameEngine(Board board) {
 		this.board = board;
 		findPlayer();
@@ -110,5 +109,6 @@ public class GameEngine {
 		playerRow = targetRow;
 		playerCol = targetCol;
 		board.setCell(playerRow, playerCol, PLAYER);
+		board.stepCounter.increaseSteps(); // Increment steps after a successful move
 	}
 }
