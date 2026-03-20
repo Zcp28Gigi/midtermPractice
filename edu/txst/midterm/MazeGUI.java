@@ -13,7 +13,6 @@ public class MazeGUI extends JFrame {
 	private GamePanel gamePanel;
 	private InfoPanel infoPanel;
 	private JMenuItem resetItem;
-	private int stepCounter;
 
 	public MazeGUI() {
 		setTitle("16-Bit Maze");
