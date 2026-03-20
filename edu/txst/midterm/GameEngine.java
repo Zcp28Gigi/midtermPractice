@@ -31,11 +31,11 @@ public class GameEngine {
 	}
 
 	public boolean playerWins() {
-		return false;
+		return playerRow == exitRow && playerCol == exitCol;
 	}
 
 	public boolean isGameOver() {
-		return false;
+		return board.stepCounter.getRemainingSteps() <= 0;
 	}
 
 	private void findPlayer() {
