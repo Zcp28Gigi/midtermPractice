@@ -1,5 +1,10 @@
 package edu.txst.midterm;
 
+/**
+ * Controls the maze game logic, including player movement,
+ * win/lose checks, and interactions with special board cells.
+ */
+
 public class GameEngine {
 	private Board board;
 	private int playerRow;
@@ -24,20 +29,37 @@ public class GameEngine {
 	private static final int REMOVE_HIDDEN = 10;
 	private static final int FIRST_AID_KIT_BONUS = 10;
 
+	/**
+	 * Creates a new game engine using the given board.
+	 *
+	 * @param board the board used for the game
+	 */
 	public GameEngine(Board board) {
 		this.board = board;
 		findPlayer();
 		findExit();
 	}
 
+	/**
+	 * Checks whether the player has reached the exit.
+	 *
+	 * @return true if the player is on the exit cell; false otherwise
+	 */
 	public boolean playerWins() {
 		return playerRow == exitRow && playerCol == exitCol;
 	}
-
+	/**
+	 * Checks whether the player has used all available steps.
+	 *
+	 * @return true if there are no remaining steps; false otherwise
+	 */
 	public boolean isGameOver() {
 		return board.stepCounter.getRemainingSteps() <= 0;
 	}
 
+	/**
+	 * Finds the player's current position on the board.
+	 */
 	private void findPlayer() {
 		for (int r = 0; r < 5; r++) {
 			for (int c = 0; c < 10; c++) {
@@ -50,6 +72,9 @@ public class GameEngine {
 		}
 	}
 
+	/**
+	 * Finds the exit position on the board.
+	 */
 	private void findExit() {
 		for (int r = 0; r < 5; r++) {
 			for (int c = 0; c < 10; c++) {
@@ -106,11 +131,12 @@ public class GameEngine {
 
 		// 3. Check for First Aid Kit
 		if (targetCell == FIRST_AID_KIT) {
-			board.stepCounter.decreaseSteps(FIRST_AID_KIT_BONUS);
+		board.stepCounter.decreaseSteps(FIRST_AID_KIT_BONUS);
 		} else if (targetCell == HIDDEN_FIRST_AID_KIT) {
-			board.setCell(targetRow, targetCol, HIDDEN_FIRST_AID_KIT - REMOVE_HIDDEN);
-			board.stepCounter.decreaseSteps(FIRST_AID_KIT_BONUS);
+		board.setCell(targetRow, targetCol, HIDDEN_FIRST_AID_KIT - REMOVE_HIDDEN);
+		board.stepCounter.decreaseSteps(FIRST_AID_KIT_BONUS);
 		}
+
 
 		// 4. Move the Player
 		// Current position becomes Floor (or Goal if player was standing on one)
