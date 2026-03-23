@@ -62,8 +62,20 @@ public class GameEngine {
 		}
 	}
 
-	private void removeHidden() {
 
+	/**
+	 * Changes all hidden cells to their revealed counterparts. Called when player steps on a hidden
+	 * map.
+	 */
+	private void removeHidden() {
+		for (int r = 0; r < 5; r++) {
+			for (int c = 0; c < 10; c++) {
+				int cell = board.getCell(r, c);
+				if (cell >= HIDDEN_FLOOR && cell <= HIDDEN_EXIT) {
+					board.setCell(r, c, cell - REMOVE_HIDDEN);
+				}
+			}
+		}
 	}
 
 	/**
